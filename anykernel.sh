@@ -30,6 +30,12 @@ patch_vbmeta_flag=auto;
 # import patching functions/variables - see for reference
 . tools/ak3-core.sh;
 
+if [ "$(getprop persist.sys.fuse.passthrough.enable)" != "true" ]; then
+	ui_print "Enabling fuse passthrough..."
+
+	# FUSE Passthrough
+	patch_prop /system/build.prop "persist.sys.fuse.passthrough.enable" "true"
+fi
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
