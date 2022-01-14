@@ -382,10 +382,12 @@ do_modules() {
       dump_moduleremover $moddir/post-fs-data.sh;
       $BB cp -f $AKHOME/vertmp $moddir/version;
       umask $umask;
+      return 0;
     else
-      ui_print "Magisk installation not found. Skipped!";
+      ui_print "Magisk installation not found.";
     fi;
-  else
+  fi
+
     cd $AKHOME/modules;
     ui_print " " "Pushing modules...";
     if [ -d /dev/block/mapper ]; then
@@ -400,7 +402,7 @@ do_modules() {
       ($BB mount -o rw,remount -t auto /vendor;
       $BB mount -o rw,remount -t auto /product) 2>/dev/null;
     fi;
-    for module in $($BB find . -name '*.ko'); do
+    for module in $($BB find . -type f); do
       modtarget=$POSTINSTALL$(echo $module | $BB cut -c2-);
       if [ ! -e $modtarget ]; then
         case $module in
@@ -428,7 +430,7 @@ do_modules() {
       ($BB mount -o ro,remount -t auto /vendor;
       $BB mount -o ro,remount -t auto /product) 2>/dev/null;
     fi;
-  fi;
+
   cd $AKHOME;
 }
 
