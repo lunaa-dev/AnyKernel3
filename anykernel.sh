@@ -4,15 +4,15 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=lineage
+kernel.string=aospa
 do.devicecheck=1
 do.modules=1
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=martini
-device.name2=OnePlus 9RT
-device.name3=OP5155L1
+device.name1=RMX3360
+device.name2=realme GT Master Edition
+device.name3=RMX3363
 device.name4=
 device.name5=
 supported.versions=
